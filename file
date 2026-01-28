@@ -1,0 +1,131 @@
+mca@mca-HP-Pro-Tower-280-G9-E-PCI-Desktop-PC:~$ sudo mysql
+[sudo] password for mca: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.44-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database college;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use college;
+Database changed
+mysql> create table student(Rollno int(10),name varchar(50),Dob date,place varchar(50),phno int(20));
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> create table course(course_code int(20),course name varchar(50),credit int(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(50),credit int(20))' at line 1
+mysql> create table course(course_code int(20),course_name varchar(50),credit int(20));
+Query OK, 0 rows affected, 2 warnings (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| course            |
+| student           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Rollno | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| Dob    | date        | YES  |     | NULL    |       |
+| place  | varchar(50) | YES  |     | NULL    |       |
+| phno   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student drop phno;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table student add aadharno varchar(50);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | int         | YES  |     | NULL    |       |
+| name     | varchar(50) | YES  |     | NULL    |       |
+| Dob      | date        | YES  |     | NULL    |       |
+| place    | varchar(50) | YES  |     | NULL    |       |
+| aadharno | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student modify column Rollno varchar(10);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT;
+ERROR 1146 (42S02): Table 'college.STUDENT' doesn't exist
+mysql> 
+mysql> DESC student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Rollno   | varchar(10) | YES  |     | NULL    |       |
+| name     | varchar(50) | YES  |     | NULL    |       |
+| Dob      | date        | YES  |     | NULL    |       |
+| place    | varchar(50) | YES  |     | NULL    |       |
+| aadharno | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| course            |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> DESC course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| course_code | int         | YES  |     | NULL    |       |
+| course_name | varchar(50) | YES  |     | NULL    |       |
+| credit      | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table course modify column course_code varchar(20);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| course_code | varchar(20) | YES  |     | NULL    |       |
+| course_name | varchar(50) | YES  |     | NULL    |       |
+| credit      | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> drop table course;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> drop database college;
+Query OK, 0 rows affected (0.04 sec)
+
